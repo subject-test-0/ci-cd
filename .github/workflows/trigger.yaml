@@ -3,7 +3,11 @@ name: Update Fork and Deploy
 on:
   repository_dispatch:
     types: [main_updated]
-
+    
+permissions:
+  contents: write
+  actions: read
+  
 jobs:
   update-and-deploy:
     runs-on: ubuntu-latest
