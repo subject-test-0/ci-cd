@@ -1,0 +1,12 @@
+name: Trigger Fork Repo Action
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on:
+  push:
+    branches:
+      - main
+jobs:
+  trigger-fork:
+    if: github.repository_owner == 'subject-test-0'
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo main branch pushed
