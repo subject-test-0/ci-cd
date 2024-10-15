@@ -1,11 +1,19 @@
-name: Trigger sync
+name: Update Fork and Deploy
+
 on:
   repository_dispatch:
-    type: [main_updated]
+    types: [main_updated]
 
 jobs:
-  trigger-sync:
+  update-and-deploy:
     runs-on: ubuntu-latest
     if: github.repository == 'MinaRoh/ci-cd-copied'
     steps:
-      - run: echo 'sync'
+      - uses: actions/checkout@v4
+      - name: Sync fork
+        run: |
+          git remote add upstream https://github.com/subject-test-0/ci-cd.git
+          git fetch upstream
+          git checkout main
+          git merge upstream/main
+          git push origin main
