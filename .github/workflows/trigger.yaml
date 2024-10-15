@@ -1,0 +1,11 @@
+name: Trigger sync
+on:
+  repository_dispatch:
+    type: [main_updated]
+
+jobs:
+  trigger-sync:
+    runs-on: ubuntu-latest
+    if: github.repository == 'MinaRoh/ci-cd-copied'
+    steps:
+      - run: echo 'sync'
